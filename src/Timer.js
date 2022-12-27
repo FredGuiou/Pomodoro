@@ -1,5 +1,5 @@
 import { Component } from "react";
-
+import style from './Timer.module.css'
 
 function secondsToHms (timeInSeconds) {
     timeInSeconds = Number(timeInSeconds);
@@ -30,6 +30,10 @@ class Timer extends Component {
         if (this.state.isTimerStarted) { // isTimerStarted est vrai => on veut arrêter le timer.
 
             clearInterval(this.timerId);
+
+
+            this.props.saveTime(this.state.time);
+
             this.setState({
                 isTimerStarted: false,
                 time: 0,
@@ -54,8 +58,8 @@ class Timer extends Component {
     render() {
         return (
             <>
-                <p>{ secondsToHms(this.state.time) }</p>
-                <button onClick={ this.HandleStartTimer }>{ this.state.isTimerStarted ? 'Stop': 'Start'}</button>
+                <p className={ style['clock-timer']}>{ secondsToHms(this.state.time) }</p>
+                <button className={ `${style['clock-btn']} ${style[`clock-btn-${this.state.isTimerStarted ? 'stop' : 'start'}`]}`} onClick={ this.HandleStartTimer }>{ this.state.isTimerStarted ? 'Stop': 'Start'}</button>
             </>
         );
     };

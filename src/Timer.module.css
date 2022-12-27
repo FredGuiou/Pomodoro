@@ -1,0 +1,27 @@
+.clock-timer {
+    font-weight: bolder;
+    font-size: 4rem;
+    color: lawngreen;
+}
+
+.clock-btn {
+    padding: 0.6rem 1.8rem;
+    font-size: 1.8rem;
+    border-radius: 20px;
+    color: rgb(42, 42, 42);
+    border: none;
+}
+
+.clock-btn-start {
+    background-color: lawngreen;
+}
+
+.clock-btn-stop {
+    background-color: darkgreen;
+    color: aliceblue;
+    /* border: 1px solid lawngreen; */
+}
+
+.clock-btn:hover {
+    cursor: pointer;
+}

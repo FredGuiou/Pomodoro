@@ -1,0 +1,16 @@
+.container {
+  padding: 3rem;
+  background-image: url(./pictures/Githubwall.jpg);
+  background-repeat: round;
+  background-size: contain;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.main-title {
+  font-weight: 600;
+  font-size: 3rem;
+  color: lawngreen;
+}

@@ -1,5 +1,6 @@
 import Timer from "./Timer";
 import TimersTable from "./TimersTable";
+import style from './App.module.css'
 
 const { Component } = require("react");
 
@@ -14,16 +15,17 @@ class App extends Component {
   };
 
   saveTime = (time) => {
+    const date = new Date();
     this.setState({
-      timer: [time]
+      timers: [...this.state.timers, { time, date }],
     });
   };
 
   render() {
     return (
-        <div style={{margin: '4rem'}}>
-          <h1>Pomodoro Timer</h1>
-          <Timer />
+        <div className={style.container}>
+          <h1 className={style['main-title']}>Pomodoro Timer</h1>
+          <Timer saveTime={this.saveTime} />
           <TimersTable timers={ this.state.timers }/>
         </div>
     );
