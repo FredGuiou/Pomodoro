@@ -4,12 +4,13 @@
     border-collapse: collapse;
 }
 
-.timers-table th, 
+.timers-table th,
 .timers-table td {
     padding: 0.5 rem;
     text-align: left;
     color: lawngreen;
     font-size:xx-large;
+    width: 50%;
 }
 
 .timers-table th {

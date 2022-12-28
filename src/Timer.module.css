@@ -14,12 +14,13 @@
 
 .clock-btn-start {
     background-color: lawngreen;
+    border: 1px solid lawngreen;
 }
 
 .clock-btn-stop {
     background-color: darkgreen;
     color: aliceblue;
-    /* border: 1px solid lawngreen; */
+    border: 1px solid lawngreen;
 }
 
 .clock-btn:hover {
