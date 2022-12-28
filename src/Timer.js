@@ -1,68 +1,46 @@
-import { Component } from "react";
+import { useState } from "react";
+import ClockDisplay from "./ClockDisplay";
 import style from './Timer.module.css'
 
-function secondsToHms (timeInSeconds) {
-    timeInSeconds = Number(timeInSeconds);
-    const h = Math.floor(timeInSeconds / 3600);
-    const m = Math.floor(timeInSeconds % 3600 / 60);
-    const s = Math.floor(timeInSeconds % 3600 % 60);
+let timerId;
 
-    const hDisplay = h < 10 ? '0' + h : h; 
-    const mDisplay = m < 10 ? '0' + m : m; 
-    const sDisplay = s < 10 ? '0' + s : s; 
+function Timer(props) {
 
-    return `${hDisplay}:${mDisplay}:${sDisplay}`;
-};
+    const [isTimerStarted, setTimerStarted] = useState(false);
+    const [time, setTime] = useState(0);
 
+    const HandleStartTimer = () => {
+        if (isTimerStarted) { // isTimerStarted est vrai => on veut arrêter le timer.
+
+            clearInterval(timerId);
 
 
-class Timer extends Component {
+            props.saveTime(time);
 
-    constructor (props){
-        super(props);
-        this.state = {
-            isTimerStarted: false,
-            time: 0,
-        };
-    };
-
-    HandleStartTimer = () => {
-        if (this.state.isTimerStarted) { // isTimerStarted est vrai => on veut arrêter le timer.
-
-            clearInterval(this.timerId);
-
-
-            this.props.saveTime(this.state.time);
-
-            this.setState({
-                isTimerStarted: false,
-                time: 0,
-            });
+            setTimerStarted(false);
+            setTime(0);
 
         } else {  // isTimerStarted est faux => on veut démarrer le timer.
 
-            this.setState({
-                isTimerStarted: true,
-            });
-            this.timerId = setInterval (() => {
-                this.setState(({ time }) => {
-                    return {
-                        time: time + 1                    }
+            setTimerStarted(true);
+
+            timerId = setInterval (() => {
+                setTime((prevTime) => {
+                    return prevTime + 1 ;
                 });
             }, 1000);
             
         };
     };
 
+    return (
+        <>
+            <ClockDisplay time={ time } className={style['clock-timer']}/>
+            <button className={ `${style['clock-btn']} ${style[`clock-btn-${isTimerStarted ? 'stop' : 'start'}`]}`} onClick={ HandleStartTimer }>{ isTimerStarted ? 'Stop': 'Start'}</button>
+        </>
+    );
 
-    render() {
-        return (
-            <>
-                <p className={ style['clock-timer']}>{ secondsToHms(this.state.time) }</p>
-                <button className={ `${style['clock-btn']} ${style[`clock-btn-${this.state.isTimerStarted ? 'stop' : 'start'}`]}`} onClick={ this.HandleStartTimer }>{ this.state.isTimerStarted ? 'Stop': 'Start'}</button>
-            </>
-        );
-    };
+
 };
 
 export default Timer;
