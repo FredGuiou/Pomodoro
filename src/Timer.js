@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import Button from "./Button";
 import ClockDisplay from "./ClockDisplay";
 import style from './Timer.module.css'
@@ -44,10 +44,10 @@ function Timer(props) {
     //     );
     // }, [ isTimerStarted ]); //On utilise un tableau de dépendances pour empêcher le rechargement grace à useMemo du JSX retourné.
 
-    const handleClick = useMemo(() => {
-        return () => {
+    const handleClick = useCallback(() => {
+        //avec le hook useCallback on a plus besoin de faire un return d'une fonction anonyme car useCallback retourne directement ce qu'il contient.
             alert('Hello Word !');
-        }
+        
     }, []);
 
 
