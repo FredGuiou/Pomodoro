@@ -1,8 +1,25 @@
+import { useEffect, useRef } from 'react';
 import ClockDisplay from './ClockDisplay';
 import style from './TimersTable.module.css';
 
 
 function TimersTable(props) {
+    //Pour récupérer les références des valeurs d'un tableau.
+    //On définit ne constante qui utilise le hook useRef avec pour valeur initiale un tableau vide.
+    const timersRef = useRef([]);
+    //On utilise une constante avec une fonction fléchée anonyme ayant pour
+    //argument chaque "element" du tableau.
+    const addTimerRef = (element) => {
+        //Si timersRef.current existe et que timersRef n'inclue pas l'élément
+        if(timersRef.current && !timersRef.current.includes(element)) {
+            //Alors on effectue un push de l'élément de timersRef.current
+            timersRef.current.push(element);
+        };
+    };
+
+    useEffect(() => {
+        console.log(timersRef.current);
+    }, []);
 
     return(
         <table className= { style['timers-table'] }>
@@ -15,7 +32,7 @@ function TimersTable(props) {
             <tbody>
                 {
                     props.timers.map((timer) => (
-                        <tr onClick={ () => props.onDisplayTimerDetails(timer) } key = { timer.date.getMilliseconds() }>
+                        <tr ref={ addTimerRef } onClick={ () => props.onDisplayTimerDetails(timer) } key = { timer.date.getMilliseconds() }>
                             <td>{ timer.date.toLocaleDateString() } at { timer.date.toLocaleTimeString() }</td>
                             <td><ClockDisplay time={timer.time}/></td>
                         </tr>
