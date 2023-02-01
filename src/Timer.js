@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Button from "./Button";
 import ClockDisplay from "./ClockDisplay";
 import useTimer from "./hooks/useTimer";
+import TaskForm from "./TaskForm";
 import style from './Timer.module.css';
 import TimerText from "./TimerText";
 
@@ -24,7 +24,7 @@ function Timer(props) {
     return (
         <>
             <ClockDisplay time={ time } className={style['clock-timer']}/>
-            <Button isTimerStarted={ isTimerStarted } onClick={ handleStartTimer }/>
+            <TaskForm isTimerStarted={ isTimerStarted } onSubmit={ handleStartTimer } />
             <TimerText isTimerStarted={ isTimerStarted } />
         </>
     );

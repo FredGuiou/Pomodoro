@@ -1,0 +1,43 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    width:30%;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.input {
+    padding: .5rem .8rem;
+    border-radius: 10px;
+    border: 3px solid;
+    color: lawngreen;
+    border-color: lawngreen;
+    caret-color: lawngreen;
+    width: 90%;
+    background-color: rgba(0, 0, 0, 0.486);
+}
+
+.input:focus {
+    border-color: darkgreen;
+    outline: 2px solid darkgreen;
+}
+
+.input::placeholder {
+    font-weight: bold;
+    opacity: 0.5;
+    color: lawngreen;
+}
+
+.label {
+    color: lawngreen;
+    font-weight: bold;
+}
+

@@ -1,13 +1,12 @@
 import { memo } from 'react';
 import style from './Button.module.css';
 
-function Button({ isTimerStarted, onClick }) {
-
-    // console.log('RENDER BTN', onClick);
+function Button({ isTimerStarted, onClick, type = 'button' }) {
 
     return (
-        <button className={ `${style['clock-btn']} ${style[`clock-btn-${isTimerStarted ? 'stop' : 'start'}`]}`}
-            onClick={ onClick }>{ isTimerStarted ? 'Stop': 'Start'}</button>
+        <button type={ type } className={ `${style['clock-btn']} ${style[`clock-btn-${isTimerStarted ? 'stop' : 'start'}`]}`}
+            onClick={ onClick }>{ isTimerStarted ? 'Stop': 'Start'}
+            </button>
     );
 };
 
