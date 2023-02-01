@@ -23,6 +23,7 @@
     caret-color: lawngreen;
     width: 95%;
     background-color: rgba(0, 0, 0, 0.486);
+    resize: none;
 }
 
 .input:focus {

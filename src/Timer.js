@@ -10,10 +10,10 @@ function Timer(props) {
     const [isTimerStarted, setTimerStarted] = useState(false);
     const { time, startTimer, stopTimer } = useTimer();
 
-    const handleStartTimer = () => {
+    const handleStartTimer = ({ title, description }) => {
         if (isTimerStarted) { // isTimerStarted est vrai => on veut arrêter le timer.
             const savedTime = stopTimer();
-            props.saveTime(savedTime);
+            props.saveTime(savedTime, title, description);
             setTimerStarted(false);
         } else {  // isTimerStarted est faux => on veut démarrer le timer.
             setTimerStarted(true);
