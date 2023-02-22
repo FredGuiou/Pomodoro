@@ -42,3 +42,7 @@
     font-weight: bold;
 }
 
+.error {
+    color: rgb(255, 94, 0);
+    font-weight: bold;
+}
