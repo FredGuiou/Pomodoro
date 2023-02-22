@@ -19,6 +19,6 @@ On peut alors créer une fonction qui gère la soumission du form pour notament 
 
 Pour ça on crée un répertoire dédié dans src nommé forms et deux composants (textFields & textArea).
 
-### Fonction focus();
+### Fonction focus()
 
-La fonction focus permet de placer le cuseur de la souris dans le champs du composant immédiatement. Pour cela on utilise le useImperativeHandle
+La fonction focus permet de placer le cuseur de la souris dans le champs du composant immédiatement. Pour cela on utilise le useImperativeHandle.
