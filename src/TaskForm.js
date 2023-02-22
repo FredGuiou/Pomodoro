@@ -6,33 +6,30 @@ import style from "./TaskForm.module.css";
 
 function TaskForm({ isTimerStarted, onSubmit }) {
 
-    const [titleValue, setTitleValue] = useState('');
+    const initialFormValue = {//cette constante est l'état initial du formulaire à savoir une caine vide
+        title: '',
+        description: '',
+    }
 
-    const [descriptionValue, setDescriptionValue] = useState('');
+    const [formValue, setFormValue ] = useState(initialFormValue);
 
     //Permet de soumettre le formulaire
     const handleSubmitForm = (event) => {
         //On commence par empêcher le rechargement de la page au moment de la soumission.
         event.preventDefault();
-        onSubmit(//On passe à la soumission l'objet du formulaire.
-            {
-                title: titleValue,
-                description: descriptionValue,
-            }
-        );
+        //On soumet le formulaire directement dans le onSubmit.
+        onSubmit(formValue);
 
         //On réinitialise les valeurs des champs une fois la tâche enregistrée.
         if (isTimerStarted){//lorsque le timer est lancé
-            //On ramène à null la valeur des champs via current.value
-            setTitleValue('');
-            setDescriptionValue('');
-        }
+            setFormValue(initialFormValue);
+        };
     };
 
     return (
         <form onSubmit={ handleSubmitForm } className={style['form']}>
-            <TextField labelTitle='Titre' placeholder="Titre de votre tâche" value={ titleValue } onChange={ setTitleValue } />
-            <TextareaField labelTitle='Description' placeholder="Ecrivez votre description ici..." value={ descriptionValue } onChange={ setDescriptionValue }/>
+            <TextField labelTitle='Titre' placeholder="Titre de votre tâche" value={ formValue.title } onChange={ (v) => setFormValue({...formValue, title: v}) } />
+            <TextareaField labelTitle='Description' placeholder="Ecrivez votre description ici..." value={ formValue.description } onChange={ (v) => setFormValue({...formValue, description: v}) }/>
             <Button type='submit' isTimerStarted={ isTimerStarted } />
         </form>
     );
