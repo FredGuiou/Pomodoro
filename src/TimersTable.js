@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import ClockDisplay from './ClockDisplay';
 import style from './TimersTable.module.css';
 
@@ -16,10 +16,6 @@ function TimersTable(props) {
             timersRef.current.push(element);
         };
     };
-
-    useEffect(() => {
-        console.log(timersRef.current);
-    }, []);
 
     return(
         <table className= { style['timers-table'] }>

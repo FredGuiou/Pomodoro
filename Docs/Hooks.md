@@ -151,3 +151,30 @@ export default memo(forwardRef(TimerText));
 ## Création de hook personnalisés
 
 La création de hooks personnalisés est recommandées pour mutualiser du code et optimiser le DRY. Dans le cas du présent projet il y a une fonction secondsToHms qui est utilisées dans les composants App et clockDisplay. L'idée du hook perso est de rendre cette fonction unique et la passer en props au moment opportun.
+
+## useImperativeHandle
+
+```js
+const handleSubmitForm = (event) => {
+        event.preventDefault();
+        onSubmit(
+            {
+                title:titleInput.current.value,
+                description:descriptionInput.current.value,
+            }
+        );
+        if (isTimerStarted){
+            titleInput.current.value = null;
+            descriptionInput.current.value = null;
+        }
+    };
+```
+
+Dans le cas ci dessus, on cherche à récupérer depuis les composants de Forms (TextField & TextareaFiled) les current.value des champs title et descriptions.
+
+Pour cela il existe un hook spécifique mis à disposition par react : useImperativeHandle.
+Il a pour arguments "ref" (pour récupérer la propriété depuis input) et une fonction anonyme qui renvoie une valeurau composant parent (ici TaskForm).
+On n'oublie pas de passer ref en paramètre de la fonction TextField du composant.
+Par ailleurs pour retourner une ref à un composant parent on encapsule l'export dans le hook forwardRef.
+
+useImperativeHandle sert à appliquer une modification directement dans un champs depuis un composant parent. Par exemple, Positionner le curseur dans un champs aud émarrage de l'application, ou encore paraméter une valeur par défaut d'une chaine de caractère dans le champs.

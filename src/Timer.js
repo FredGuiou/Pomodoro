@@ -28,8 +28,6 @@ function Timer(props) {
             <TimerText isTimerStarted={ isTimerStarted } />
         </>
     );
-
-
 };
 
 export default Timer;

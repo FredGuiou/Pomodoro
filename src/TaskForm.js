@@ -1,40 +1,44 @@
-import { useId, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Button from "./Button";
+import TextareaField from "./Forms/TextareaField";
+import TextField from "./Forms/TextField";
 import style from "./TaskForm.module.css";
 
 function TaskForm({ isTimerStarted, onSubmit }) {
 
-    const id = useId();
-
+    //Grâce aux refs je peux gérer l'insertion des données entrées par l'utilisateur dans le tabelau.
+    //On crée deux constantes qui ont pour valeurs de départ "null".
     const titleInput = useRef(null);
-    const descriptionInput = useRef(null);
+    // const descriptionInput = useRef(null);
 
+    useEffect(() => {
+        titleInput.current.focus();
+        titleInput.current.setDefaultValue('Hello World !');
+    }, []);
+    //Permet de soumettre le formulaire
     const handleSubmitForm = (event) => {
+        //On commence par empêcher le rechargement de la page au moment de la soumission.
         event.preventDefault();
-        onSubmit(//On passe à la soumission l'objet du formulaire
-            {
-                title:titleInput.current.value,
-                description:descriptionInput.current.value,
-            }
-        ); // vient du composant parent de TaskForm.
+        console.log(titleInput.current);
+        // onSubmit(//On passe à la soumission l'objet du formulaire.
+        //     {
+        //         title:titleInput.current.value,
+        //         description:descriptionInput.current.value,
+        //     }
+        // ); // vient du composant parent de TaskForm.
 
-        //On réinitialise les valeurs des champs une fois la tâche enregistrée.
-        if (isTimerStarted){
-            titleInput.current.value = null;
-            descriptionInput.current.value = null;
-        }
+        // //On réinitialise les valeurs des champs une fois la tâche enregistrée.
+        // if (isTimerStarted){//lorsque le timer est lancé
+        //     //On rmène à null la valeur des champs via current.value
+        //     titleInput.current.value = null;
+        //     descriptionInput.current.value = null;
+        // }
     };
 
     return (
         <form onSubmit={ handleSubmitForm } className={style['form']}>
-            <div className={style['input-group']}>
-                <label className={style['label']} htmlFor={ `${id}-title` }>Titre</label>
-                <input ref={ titleInput } className={style['input']} type="text" id={ `${id}-title` } placeholder="Titre de votre tâche" />
-            </div>
-            <div className={style['input-group']}>
-                <label className={style['label']} htmlFor={ `${id}-description` }>Description</label>
-                <textarea ref={ descriptionInput } className={style['input']} id={ `${id}-description` } rows="5" placeholder="Description de votre tâche"></textarea>
-            </div>
+            <TextField labelTitle='Titre' placeholder="Titre de votre tâche" ref={ titleInput }/>
+            <TextareaField labelTitle='Description' placeholder="Ecrivez votre description ici..."/>
             <Button type='submit' isTimerStarted={ isTimerStarted } />
         </form>
     );
