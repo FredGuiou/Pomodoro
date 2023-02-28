@@ -180,3 +180,5 @@ Par ailleurs pour retourner une ref à un composant parent on encapsule l'export
 useImperativeHandle sert à appliquer une modification directement dans un champs depuis un composant parent. Par exemple, Positionner le curseur dans un champs aud émarrage de l'application, ou encore paraméter une valeur par défaut d'une chaine de caractère dans le champs.
 
 ## useDeferredValue
+
+Permet de diférer le résultat par rapport à une recherche ou un évènement.Ex: attendre d'avoir fini de taper pour pouvoir lancer la recherche.("Debounce input")

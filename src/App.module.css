@@ -1,12 +1,12 @@
 .container {
   padding: 3rem;
   background-image: url(./pictures/Githubwall.jpg);
-  background-size: cover;
+  background-size: auto;
   background-position: center;
   display:flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: auto;
 }
 
 .main-title {
