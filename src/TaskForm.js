@@ -46,11 +46,11 @@ function TaskForm({ isTimerStarted, onSubmit }) {
         }
 
         //Si le champs est égal à description et que la valeur existe ou que sa longueur est supérieure à 10 caractères
-        if(field === 'description' && (!value || value.length > 10)){
+        if(field === 'description' && (!value || value.length > 50)){
             setError({
                 //on lance alors setError qui contient un champs et son message
                 field,
-                message: 'La description doit avoir moins de 10 caractères',
+                message: 'La description doit avoir moins de 50 caractères',
             });
             return;
         }
