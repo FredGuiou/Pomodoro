@@ -17,6 +17,7 @@ function TimersTable(props) {
         };
     };
 
+
     return(
         <table className= { style['timers-table'] }>
             <thead>

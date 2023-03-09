@@ -1,8 +1,9 @@
 import Timer from "./Timer";
 import TimersTable from "./TimersTable";
 import style from './App.module.css'
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import useTimeParser from "./hooks/useTimeParser";
+import TextField from "./Forms/TextField";
 
 // Suite de fonctions permetteant de générer des tâches 
 const generateALotOfTimers = ()=> {
@@ -23,6 +24,7 @@ const aLotOfTimers = generateALotOfTimers();
 
 //Permet de rechercher des timers
 const searchTimers = (searchValue) => {
+  console.log('SEARCH !!!');
   //Si la valeur est inexistante ou que sa longueur est inf à 2
   //alors on renvoie le tableau tel quel.
   if(!searchValue || searchValue.length < 2) {
@@ -42,25 +44,38 @@ const searchTimers = (searchValue) => {
 function App() {
 
   const [timers, setTimers] = useState([]);
+  const [isPending, startTransition] = useTransition();
+  const [searchValue, setSearchValue] = useState('');
+
 
   const { parseSecondsToHMS } = useTimeParser();
 
-  const searchedTimers = searchTimers('');
+  const searchedTimers = searchTimers(searchValue);
+
+  const onSearch = (value) => {
+    startTransition(() => {
+      setSearchValue(value);
+    })
+  }
 
   const saveTime = (time, title, description) => {
     const date = new Date();
     setTimers([...timers, { time, date, title, description }]);
-  }
+  };
 
   const displayTimerDetails = (timer) => {
     alert(`${timer.date.toLocaleDateString() } at ${ timer.date.toLocaleTimeString() } \n${parseSecondsToHMS(timer.time)}`)
-  }
+  };
 
   return (
     <div className={style.container}>
       <h1 className={style['main-title']}>Pomodoro Timer</h1>
       <Timer saveTime={ saveTime } />
-      <TimersTable timers={ searchedTimers } onDisplayTimerDetails={displayTimerDetails}/>
+      <div style={{width: '100%'}}>
+        <TextField labelTitle='Rechercher' placeholder='Rechercher des tâches...' onChange={ onSearch }/>
+        { isPending && <p className={style['loading']}>Loading...</p>}
+        <TimersTable timers={ searchedTimers } onDisplayTimerDetails={displayTimerDetails}/>
+      </div>
     </div>
 );
 
