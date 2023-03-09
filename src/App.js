@@ -20,7 +20,6 @@ function App() {
     //Si la valeur est inexistante ou que sa longueur est inf à 2
     //alors on renvoie le tableau tel quel.
     if(!searchValue || searchValue.length < 2) {
-      // return aLotOfTimers;
       return timers;
     };
     //Permet de filtrer aLotOfTimers.
