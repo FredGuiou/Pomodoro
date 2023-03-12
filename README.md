@@ -25,3 +25,18 @@ TimersTable is a recap of all timers done.
 All Css was made in the GitHub design spirit grean colored.
 
 Next step : Trying to make a colour theme selector to switch between 3 color themes (green is state 0, adding orange and purple colors)
+
+----------------------------------------------------------------------
+Oh ! One more thing ... 😅.
+
+You wanna try it ? Here are the steps :
+
+1-Clone the repository
+
+2-In root project folder launch in your terminal : ```npm install``` (This will install all libraries React and necessary dependencies)
+
+3-Once install finished, launch the command line ```npm start``` in your terminal.
+
+4-In your web browser call the url : ```http://localhost:3000```
+
+You should access to the project. 🚀
